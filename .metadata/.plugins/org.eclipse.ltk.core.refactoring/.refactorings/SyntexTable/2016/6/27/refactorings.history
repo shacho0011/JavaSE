@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;filwInputStreme&apos; in &apos;SyntexTable.syntexTable()&apos; to &apos;fileInputStreme&apos;&#x0D;&#x0A;- Original project: &apos;SymbolTable&apos;&#x0D;&#x0A;- Original element: &apos;SyntexTable.syntexTable().filwInputStreme&apos;&#x0D;&#x0A;- Renamed element: &apos;filwInputStreme&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;filwInputStreme&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;{SyntexTable.java[SyntexTable~syntexTable@filwInputStreme!636!695!652!666!QFileInputStream;!0!false" name="fileInputStreme" references="true" stamp="1467274816486" version="1.0"/>
+</session>

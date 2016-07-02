@@ -1,0 +1,11 @@
+
+public class TestClass {
+	public void test(){
+		String test[][] = null ;
+		int i = 0;
+		String t[] = {"Hello", "World!"};
+		while(i< test.length)
+			System.out.println(test[i++][0]);
+		
+	}
+}

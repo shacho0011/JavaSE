@@ -1,0 +1,12 @@
+
+public class TestClass {
+	public void test(){
+		String test[][] = {
+				{"Hello"},
+				{"How"},
+				{"Are"},
+				{"You"}
+		};
+		
+	}
+}

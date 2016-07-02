@@ -1,0 +1,10 @@
+
+public class TestClass {
+	public void test(){
+		String test[][] ;
+		int i = 0;
+		while(i< test.length)
+			System.out.println(test[i++][0]);
+		
+	}
+}
