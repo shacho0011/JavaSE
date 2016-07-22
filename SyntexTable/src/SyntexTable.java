@@ -17,6 +17,7 @@ public class SyntexTable {
 		try{
 			File file = new File("E:\\Lab 02\\input.txt");
 	        File file2 = new File("E:\\Lab 02\\output.txt");
+	        
 	        if (!file.exists()) {
 	            System.out.print("E:\\Lab 02\\input.txt" + " does not exist.");
 	            return;
@@ -80,6 +81,7 @@ public class SyntexTable {
 	                    	
 	                    }
 	            	}
+	            	
 	            	j = 0;
 	            	while(j<functionword.length){
 	            		if(str.equals(functionword[j++])){
@@ -160,8 +162,6 @@ public class SyntexTable {
 	        		id++;
 	        	}
 	        	
-	        	
-	        	
 	        }
 		}catch(Exception e){
 			System.out.println(e);
@@ -215,7 +215,7 @@ public class SyntexTable {
 		}
 		*/
 		// for assignint type for same id
-		
+		/*
 		for(i=0;i<14;i++){
 				if(syntexTable[i+1][1]==null && syntexTable[i][5].equals(syntexTable[i+1][5]) && syntexTable[i][6].equals(syntexTable[i+1][6])){
 					//System.out.println(syntexTable[i][0]);
@@ -224,6 +224,7 @@ public class SyntexTable {
 			}
 			
 		}
+		*/
 		
 		for(i=0;i<15;i++){
 			for(j=0;j<7;j++){
@@ -254,9 +255,5 @@ public class SyntexTable {
 		}catch(Exception e){
 			System.out.println(e);
 		}
-		
-		
-		
 	}
-	
 }

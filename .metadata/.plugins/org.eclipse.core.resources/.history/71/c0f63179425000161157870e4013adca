@@ -1,0 +1,80 @@
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.FlowLayout;
+
+import javax.swing.BoxLayout;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class DonorRegistrationForm extends JFrame {
+	
+	private static JFrame jFrame;
+	private static JPanel jPanel;
+	private JLabel mobileNumberLabel, nameLabel, bloodGroupLabel, sexLabel, addressLabel, emailLabel, alternativeMobileNumberLabel;
+	private JTextField mobileNumberTextField, nameTextField, bloodGroupTextField, sexTextField, addressTextField, emailTextField, alternativeMobileNumberTextField;
+	private static String titleText = "Test";
+	
+	public DonorRegistrationForm(){
+		super(titleText);
+		/*
+		jFrame = new JFrame("Test");
+		jFrame.setVisible(true);
+		jFrame.setSize(500, 200);
+		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		*/
+		
+		jPanel = new JPanel(new BorderLayout());
+		jPanel.setBackground(Color.WHITE);
+		//jPanel.setLayout(new BoxLayout(jPanel, BoxLayout.Y_AXIS));
+		
+		mobileNumberLabel = new JLabel("Donor Mobile Number:");
+		mobileNumberLabel.setBounds(20, 20, 30, 10);
+		nameLabel = new JLabel("Donor Full Name:");
+		nameLabel.setBounds(20, 40, 30, 10);
+		bloodGroupLabel = new JLabel("Donor Blood Group:");
+		bloodGroupLabel.setBounds(20, 60, 30, 10);
+		sexLabel = new JLabel("Donor Sex:");
+		sexLabel.setBounds(20, 80, 30, 10);
+		addressLabel = new JLabel("Donor Address:");
+		addressLabel.setBounds(20, 100, 30, 10);
+		emailLabel = new JLabel("Donor Email:");
+		emailLabel.setBounds(20, 120, 30, 10);
+		alternativeMobileNumberLabel = new JLabel("Donor Alternative Mobile Number:");
+		alternativeMobileNumberLabel.setBounds(20, 140, 30, 10);
+		
+		mobileNumberTextField = new JTextField(30);
+		mobileNumberTextField.setBounds(60, 20, 30, 10);
+		nameTextField = new JTextField(30);
+		mobileNumberTextField.setBounds(60, 40, 30, 10);
+		bloodGroupTextField = new JTextField(30);
+		mobileNumberTextField.setBounds(60, 60, 30, 10);
+		sexTextField = new JTextField(30);
+		mobileNumberTextField.setBounds(60, 80, 30, 10);
+		addressTextField = new JTextField(30);
+		mobileNumberTextField.setBounds(60, 100, 30, 10);
+		emailTextField = new JTextField(30);
+		mobileNumberTextField.setBounds(60, 120, 30, 10);
+		alternativeMobileNumberTextField = new JTextField(30);
+		mobileNumberTextField.setBounds(60, 140, 30, 10);
+		
+		jPanel.add(mobileNumberLabel);
+		jPanel.add(nameLabel);
+		jPanel.add(bloodGroupLabel);
+		jPanel.add(sexLabel);
+		jPanel.add(addressLabel);
+		jPanel.add(emailLabel);
+		jPanel.add(alternativeMobileNumberLabel);
+		jPanel.add(mobileNumberTextField);
+		jPanel.add(nameTextField);
+		jPanel.add(bloodGroupTextField);
+		jPanel.add(sexTextField);
+		jPanel.add(addressTextField);
+		jPanel.add(emailTextField);
+		jPanel.add(alternativeMobileNumberTextField);
+		
+		add(jPanel);
+	}
+
+}

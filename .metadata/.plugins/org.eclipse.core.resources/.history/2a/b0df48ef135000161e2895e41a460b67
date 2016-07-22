@@ -1,0 +1,11 @@
+import javax.swing.JFrame;
+
+public class Main {
+	public static void main(String args[]){
+		JFrame jFrame = new JFrame();
+		DonorRegistrationForm donor = new DonorRegistrationForm();
+		donor.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		donor.setSize(200,100);
+		donor.setVisible(true);
+	}
+}
