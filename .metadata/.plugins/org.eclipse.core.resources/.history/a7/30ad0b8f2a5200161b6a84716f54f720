@@ -1,0 +1,45 @@
+import java.awt.Color;
+
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+
+public class Menu extends JFrame{
+	private JPanel jPanel;
+	private JMenuBar menuBar;
+	private JMenu menu;
+	private JMenuItem about, donor, request, approval, stock, close;
+	private static String titleText = "Test";
+	public Menu(){
+		super(titleText);
+		
+		jPanel = new JPanel();
+		jPanel.setBackground(Color.WHITE);
+		jPanel.setLayout(null);
+		
+		menuBar = new JMenuBar();
+		menuBar.setVisible(true);
+		menu = new JMenu("File");
+		about = new JMenuItem("About");
+		donor = new JMenuItem("Donor");
+		request = new JMenuItem("Request");
+		approval = new JMenuItem("Approval");
+		stock = new JMenuItem("Stock");
+		close = new JMenuItem("Close");
+		
+		menu.add(about);
+		menu.add(donor);
+		menu.add(request);
+		menu.add(approval);
+		menu.add(stock);
+		menu.add(close);
+		
+		menuBar.add(menu);
+		jPanel.add(menuBar);
+		//add(jPanel);
+		setJMenuBar(menuBar);
+	}
+
+}
