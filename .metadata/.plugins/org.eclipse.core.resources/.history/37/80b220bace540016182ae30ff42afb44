@@ -1,0 +1,30 @@
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+
+public class About extends JPanel{
+	
+	private JPanel jPanel;
+	private Image aboutI;
+	
+	public JPanel about(){
+		aboutI = new ImageIcon("image/about.jpg").getImage();
+		Dimension size = new Dimension(aboutI.getHeight(null), aboutI.getHeight(null));
+		setPreferredSize(size);
+		setMinimumSize(size);
+	    setMaximumSize(size);
+	    setSize(size);
+	    setLayout(null);
+	    
+	    jPanel = new JPanel();
+		jPanel.setBackground(Color.WHITE);
+		jPanel.setLayout(null);
+		
+	    
+		return jPanel;
+	}
+
+}

@@ -1,0 +1,32 @@
+import java.awt.FlowLayout;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class MainClass extends JFrame{
+	public static void main(String args[]){
+		/*
+		MainFrame menu = new MainFrame();
+		menu.setVisible(true);
+		menu.setSize(800,600);
+		menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		*/
+		JFrame f = new JFrame();
+		JPanel jPanel = new JPanel();;
+		JLabel img;
+		jPanel = new JPanel();
+		//jPanel.setBackground(Color.WHITE);
+		//jPanel.setLayout(null);
+		img = new JLabel();
+		img.setIcon(new ImageIcon("C:\\Users\\Shadhin\\workspace\\BloodBankManagementSystem\\image\\about.jpg"));
+	    
+		jPanel.add(img);
+
+		f.add(jPanel);
+		f.setVisible(true);
+		f.setSize(800,600);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+}

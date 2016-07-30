@@ -1,0 +1,18 @@
+import java.awt.FlowLayout;
+
+import javax.swing.JFrame;
+
+public class MainClass extends JFrame{
+	public static void main(String args[]){
+		/*
+		MainFrame menu = new MainFrame();
+		menu.setVisible(true);
+		menu.setSize(800,600);
+		menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		*/
+		About about = new About();
+		about.setVisible(true);
+		about.setSize(800,600);
+		about.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+}

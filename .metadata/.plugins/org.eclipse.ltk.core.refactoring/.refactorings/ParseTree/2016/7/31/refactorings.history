@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;functionword&apos; in &apos;Parser.parser()&apos; to &apos;functionWord&apos;&#x0D;&#x0A;- Original project: &apos;ParseTree&apos;&#x0D;&#x0A;- Original element: &apos;Parser.parser().functionword&apos;&#x0D;&#x0A;- Renamed element: &apos;functionword&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;functionword&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;{Parser.java[Parser~parser@functionword!1396!1463!1403!1414!\[QString;!0!false" name="functionWord" references="true" stamp="1469792711085" version="1.0"/>
+</session>

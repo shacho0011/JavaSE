@@ -1,0 +1,31 @@
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class About extends JPanel{
+	
+	private JPanel jPanel;
+	private JLabel img;
+	
+	public About(){
+
+	    jPanel = new JPanel();
+		jPanel.setBackground(Color.WHITE);
+		jPanel.setLayout(null);
+		
+		img.setIcon("C:\\Users\\Shadhin\\workspace\\BloodBankManagementSystem\\image\\about.jpg");
+	    
+		//return jPanel;
+	}
+	
+	protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(aboutI, 0, 0, null);         
+    }
+
+}

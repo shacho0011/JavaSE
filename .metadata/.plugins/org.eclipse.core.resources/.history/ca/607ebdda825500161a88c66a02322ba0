@@ -1,0 +1,102 @@
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileWriter;
+
+public class Parser {
+	
+	char currentChar;
+    String str = null;
+    int i = 0, j = 0, id = 0;
+    String[][] syntexTable = new String[15][7];
+    int localScope = 0;
+    int functionFlag = 0;
+	
+	public void parser(){
+		try{
+			File file = new File("E:\\Lab 02\\input.txt");
+	        File file2 = new File("E:\\Lab 02\\output.txt");
+	        
+	        if (!file.exists()) {
+	            System.out.print("E:\\Lab 02\\input.txt" + " does not exist.");
+	            return;
+	        }
+	        
+	        if(!(file.isFile() && file.canRead())) {
+	            System.out.print(file.getName() + " cannot be read from.");
+	            return;
+	        }
+	        
+	        FileInputStream fileInputStreme = new FileInputStream(file);
+	        file2.delete();
+	        FileWriter fileWriter = new FileWriter("E:\\Lab 02\\output.txt", true);
+	        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+	        String type[] = {"int","float","double","char","string","const","long","void"};
+	        String keyword[] = {"auto","break","const","if","else","continue","default","do","while","for","enum","extern","goto","long","register","return","sizeof","static","struct","switch","signed","unsigned","typedef","union","volatile"};
+	        String functionWord[] = {"main","printf", "puts", "scanf", "gets",};
+	        
+	        while(fileInputStreme.available() > 0){
+	        	
+	        	int typeFlag = 0;
+	        	int identifierFlag = 0;
+	        	int functionFlag = 0;
+	        	int keywordFlag = 0;
+	        	i = 0;
+	        	char[] word = new char[20];
+	        	currentChar = (char) fileInputStreme.read();
+	        	
+	        	if(currentChar == '#'){
+	        		while(currentChar !='\n'){
+	        			currentChar = (char) fileInputStreme.read();
+	        		}
+	        	}
+	        	
+	        	while( (currentChar >= 'a' || currentChar >= 'A') && (currentChar <= 'z' || currentChar <= 'Z') || currentChar == '_'){
+	        		typeFlag = 0;
+	                identifierFlag = 0;
+	        		word[i++] = currentChar;
+	        		
+	            	str = new String(word).trim().replaceAll(" ", null);
+	            	j = 0;
+	            	while(j<type.length){
+	            		if(str.equals(type[j++])){
+	            			typeFlag = 1;
+	                    	identifierFlag = 0;
+	                    }else{
+	                    	typeFlag = 0;
+	                    	identifierFlag = 1;
+	            		}
+	            	}
+	            	j=0;
+	            	while(j<keyword.length){
+	            		if(str.equals(keyword[j++])){
+	            			keywordFlag = 1;
+	                    	identifierFlag = 0;
+	                    }else{
+	                    	keywordFlag = 0;
+	                    	identifierFlag = 1;
+	            		}
+	            	}
+	            	j=0;
+	            	while(j<functionWord.length){
+	            		if(str.equals(functionWord[j++])){
+	                    	identifierFlag = 1;
+	                    }else{
+	                    	typeFlag = 0;
+	                    	identifierFlag = 1;
+	            		}
+	            	}
+	        	}
+	        	
+	        	if(identifierFlag == 1){
+	        		System.out.println(str);
+	        	}
+	        	
+	        	
+	        }
+		}catch(Exception e){
+			System.out.println(e);
+		}
+	}
+}

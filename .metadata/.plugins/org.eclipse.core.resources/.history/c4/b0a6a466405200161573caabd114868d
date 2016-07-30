@@ -1,0 +1,13 @@
+import java.awt.Color;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class MainPanel extends JFrame{
+	private JPanel jPanel;
+	public MainPanel(){
+		jPanel = new JPanel();
+		jPanel.setBackground(Color.WHITE);
+		jPanel.setLayout(null);
+	}
+
+}

@@ -1,0 +1,18 @@
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+
+public class About extends JPanel{
+	
+	private JPanel jPanel;
+	private Image aboutI;
+	
+	public JPanel about(){
+		aboutI = new ImageIcon("image/about.jpg").getImage();
+		Dimension size = new Dimension();
+		
+		return jPanel;
+	}
+
+}

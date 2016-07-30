@@ -1,0 +1,19 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class DatabaseConnection {
+	
+	
+	public DatabaseConnection(){
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","shadhin","123456"); 
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println(e);
+		}  
+		
+	}
+	 
+
+}

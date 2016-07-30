@@ -1,0 +1,25 @@
+import java.awt.Color;
+import java.awt.Font;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class Request {
+	private static JFrame jFrame;
+	private static JPanel jPanel;
+	private JLabel monileNL, nameL, bloodGL, sexL, addressL, emailL, alternativeMNL;
+	private JTextField mobileNTF, nameTF, bloodGTF, sexTF, addressTF, emailTF, alternativeMNTF;
+	private JButton submitB;
+	private static String titleText = "BBMS";
+	
+	public Request(){
+		
+		jPanel = new JPanel();
+		jPanel.setBackground(Color.WHITE);
+		jPanel.setLayout(null);
+	}
+
+}

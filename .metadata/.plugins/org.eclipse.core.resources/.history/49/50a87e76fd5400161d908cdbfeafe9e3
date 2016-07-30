@@ -1,0 +1,130 @@
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+
+public class MainFrame extends JFrame implements ActionListener{
+	private JFrame jFrame;
+
+	private JMenuBar menuBar;
+	private JMenu file, reg, inventory, req,s;
+	private JMenuItem about, close, donor, stock, sells, request, approval;
+	private static String titleText = "BBMS";
+	private int pFlag = 0;
+	
+	
+	public MainFrame(){
+		jFrame = new JFrame(titleText);
+		jFrame.setVisible(true);
+		jFrame.setSize(800,600);
+		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+	}
+	
+	
+	public void initComponent(){
+		menuBar = new JMenuBar();
+		menuBar.setVisible(true);
+		jFrame.setJMenuBar(menuBar);
+		
+		file = new JMenu("File");
+		menuBar.add(file);
+		file.addSeparator();
+		
+		about = new JMenuItem("About");
+		file.add(about);
+		about.addActionListener(this);
+		
+		close = new JMenuItem("Close");
+		file.add(close);
+		close.addActionListener(this);
+		
+		reg = new JMenu("Registration");
+		menuBar.add(reg);
+		reg.addSeparator();
+		
+		donor = new JMenuItem("Donor");
+		reg.add(donor);
+		donor.addActionListener(this);
+		
+		inventory = new JMenu("Inventory");
+		menuBar.add(inventory);
+		inventory.addSeparator();
+		
+		stock = new JMenuItem("Stock");
+		inventory.add(stock);
+		stock.addActionListener(this);
+		
+		sells = new JMenuItem("Sells");
+		inventory.add(sells);
+		sells.addActionListener(this);
+		
+		req = new JMenu("Request");
+		menuBar.add(req);
+		
+		request = new JMenuItem("Request");
+		req.add(request);
+		request.addActionListener(this);
+		
+		approval = new JMenuItem("Approval");
+		req.add(approval);
+		approval.addActionListener(this);
+	}
+	
+	
+	
+	@Override
+	public void actionPerformed(ActionEvent arg) {
+		// TODO Auto-generated method stub
+		String comStr = arg.getActionCommand();
+		if(comStr.equals("About")){
+			pFlag = 1;
+			
+			
+			About about = new About();
+			add(about.About());
+			
+			jFrame.validate();
+			jFrame.repaint();
+			
+			System.out.println("About");
+		}else if(comStr.equals("Close")){
+			pFlag = 2;
+			System.exit(0);
+			System.out.println("Close");
+		}else if(comStr.equals("Donor")){
+			pFlag = 3;
+			
+			DonorRegistrationForm drf = new DonorRegistrationForm();
+			jFrame.add(drf.DonorRegistrationForm());
+			
+			jFrame.validate();
+			jFrame.repaint();
+			
+			System.out.println("Donor");
+		}else if(comStr.equals("Stock")){
+			pFlag = 4;
+			System.out.println("Stock");
+		}else if(comStr.equals("Sells")){
+			pFlag = 5;
+			System.out.println("Sells");
+		}else if(comStr.equals("Request")){
+			pFlag = 6;
+			Request req = new Request();
+			jFrame.add(req.Request());
+
+			System.out.println("Request");
+		}else if(comStr.equals("Approval")){
+			pFlag = 7;
+			System.out.println("Approval");
+		}else{
+			pFlag = 0;
+			System.out.println("Select again!");
+		}
+	}
+
+}

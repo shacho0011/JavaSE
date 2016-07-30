@@ -6,89 +6,95 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
-public class Menu extends JFrame implements ActionListener{
-	private JPanel jPanel;
+public class MainFrame extends JFrame{
+	private JFrame jFrame;
 	private JMenuBar menuBar;
 	private JMenu file, reg, inventory, req;
 	private JMenuItem about, close, donor, stock, sells, request, approval;
 	private static String titleText = "BBMS";
-	public Menu(){
-		super(titleText);
-		
-		jPanel = new JPanel();
-		jPanel.setBackground(Color.WHITE);
-		jPanel.setLayout(null);
-		
+	private int pFlag = 0;
+	
+	
+	public MainFrame(){
+		jFrame = new JFrame(titleText);
+		jFrame.setVisible(true);
+		jFrame.setSize(800,600);
+		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+	}
+	
+	
+	public void initComponent(){
 		menuBar = new JMenuBar();
 		menuBar.setVisible(true);
+		jFrame.setJMenuBar(menuBar);
 		
 		file = new JMenu("File");
-		reg = new JMenu("Registration");
-		inventory = new JMenu("Inventory");
-		req = new JMenu("Request");
+		menuBar.add(file);
+		file.addSeparator();
 		
 		about = new JMenuItem("About");
-		about.addActionListener(this);
-		close = new JMenuItem("Close");
-		close.addActionListener(this);
-		donor = new JMenuItem("Donor");
-		donor.addActionListener(this);
-		stock = new JMenuItem("Stock");
-		stock.addActionListener(this);
-		sells = new JMenuItem("Sells");
-		sells.addActionListener(this);
-		request = new JMenuItem("Request");
-		request.addActionListener(this);
-		approval = new JMenuItem("Approval");
-		approval.addActionListener(this);
-		
 		file.add(about);
+		
+		close = new JMenuItem("Close");
 		file.add(close);
+		
+		reg = new JMenu("Registration");
+		menuBar.add(reg);
+		
+		donor = new JMenuItem("Donor");
 		reg.add(donor);
+		
+		inventory = new JMenu("Inventory");
+		menuBar.add(inventory);
+		
+		stock = new JMenuItem("Stock");
 		inventory.add(stock);
+		
+		sells = new JMenuItem("Sells");
 		inventory.add(sells);
+		
+		req = new JMenu("Request");
+		menuBar.add(req);
+		
+		request = new JMenuItem("Request");
 		req.add(request);
+		
+		
+		approval = new JMenuItem("Approval");
 		req.add(approval);
 		
 		
-		menuBar.add(file);
-		menuBar.add(reg);
-		menuBar.add(inventory);
-		menuBar.add(req);
-		
-		add(jPanel);
-		setJMenuBar(menuBar);
-	}
-	@Override
-	public void actionPerformed(ActionEvent arg) {
-		// TODO Auto-generated method stub
-		String comStr = arg.getActionCommand();
-		if(comStr.equals("")){
-			
-		}else if(comStr.equals("About")){
-			System.out.println("About");
-		}else if(comStr.equals("Close")){
-			System.out.println("Close");
-		}else if(comStr.equals("Donor")){
-			
-			DonorRegistrationForm donor = new DonorRegistrationForm();
-			donor.setVisible(true);
-			donor.setSize(800,600);
-			donor.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			jPanel.setVisible(false);
-			System.out.println("Donor");
-		}else if(comStr.equals("Stock")){
-			System.out.println("Stock");
-		}else if(comStr.equals("Sells")){
-			System.out.println("Sells");
-		}else if(comStr.equals("Request")){
-			System.out.println("Request");
-		}else if(comStr.equals("Approval")){
-			System.out.println("Approval");
-		}else{
-			System.out.println("Select again!");
+		class donorA implements ActionListener{
+			public void actionPerformed(ActionEvent e){
+				DonorRegistrationForm drf = new DonorRegistrationForm();
+				jFrame.add(drf.DonorRegistrationForm());
+			}
 		}
+		
+		donor.addActionListener(new donorA());
+		
+		class requestA implements ActionListener{
+			public void actionPerformed(ActionEvent e){
+				Request req = new Request();
+				jFrame.add(req.Request());
+			}
+		}
+		
+		request.addActionListener(new requestA());
+		
+		class closeA implements ActionListener{
+			public void actionPerformed(ActionEvent e){
+				System.exit(0);
+			}
+		}
+		
+		close.addActionListener(new closeA());
+		
+		
+		
 	}
+
 
 }
