@@ -4,13 +4,18 @@ import java.util.Scanner;
 public class ParserG {
 	
 	int stk = 0;
+	int parseFlag = 1;
 	private String[][] parseTable = {
-			{null,"id","+","*","(",")","$"},
-			{"E","Te",null,null,"Te",null,null},
-			{"e",null,"+Te",null,null,"!","!"},
-			{"T","Ft",null,null,"Ft",null,null},
-			{"t",null,"!","*Ft",null,"!","!"},
-			{"F","id",null,null,"(E)",null,null}
+			{null,"id","num","+","-","*","/","(",")","$"},
+			{"E","Te","Te",null,null,null,null,"Te",null,null},
+			{"e",null,null,"+Te",null,null,null,null,"!","!"},
+			{"T","Ft","Ft",null,null,null,null,"Ft",null,null},
+			{"t",null,null,"!","-Ft",null,null,null,"!","!"},
+			{"F","Gf","Gf",null,null,null,null,"Gf",null,null},
+			{"f",null,null,"!","!","*Gf",null,null,"!","!"},
+			{"G","Hg","Hg",null,null,null,null,"Hg",null,null},
+			{"g",null,null,"!","!","!","/Hg",null,"!","!"},
+			{"H","id","num",null,null,null,null,"(E)",null,null}
 			
 	};
 	
@@ -23,8 +28,8 @@ public class ParserG {
 		sentence = sc.nextLine();
 		System.out.println("Sentence is: "+ sentence);
 		System.out.println("Parser table for the predefined grammar shown below:");
-		for(int i = 0; i<6; i++){
-			for(int j = 0; j<7; j++)
+		for(int i = 0; i<10; i++){
+			for(int j = 0; j<10; j++)
 				System.out.print(parseTable[i][j]+"\t");
 			System.out.println("");
 		}
@@ -51,8 +56,10 @@ public class ParserG {
 	        	int identifierFlag = 0;
 	        	int functionFlag = 0;
 	        	int keywordFlag = 0;
+	        	int numberFlag = 0;
+	        	int dotFlag = 0;
 	        	k = 0;
-	        	char[] word = new char[10];
+	        	char[] word = new char[20];
 
 	        	while( (sent[i] >= 'a' || sent[i] >= 'A') && (sent[i] <= 'z' || sent[i] <= 'Z') || sent[i] == '_'){
 	        		
@@ -62,6 +69,9 @@ public class ParserG {
 	                identifierFlag = 0;
 	                functionFlag = 0;
 		        	keywordFlag = 0;
+		        	numberFlag = 0;
+		        	dotFlag = 0;
+		        	
 	        		word[k++] = sent[i];
 	        		//System.out.println("index of k: "+k);
 	            	str = new String(word).trim().replaceAll(" ", null);
@@ -111,15 +121,43 @@ public class ParserG {
 	            		}
 	            	}
 	            	
-	            	if(i<sent.length-1) i++;break;
+	            	if(i<sent.length-1) i++;
+	            	else break;
 	        	}
-	        	
+	        	System.out.println("Number: ");
+	        	while((sent[i] >= '0'&& sent[i] <= '9')||(sent[i] == '.' && (dotFlag == 0||dotFlag == 1))){
+	        		numberFlag = 1;
+	        		if(sent[i] == '.' && dotFlag == 0){
+	        			dotFlag = 1;
+	        		}else if(sent[i] == '.' && dotFlag == 1){
+	        			dotFlag = 2;
+	        		}
+	        		
+	        		System.out.print(sent[i]);
+	        		if(i<sent.length-1) i++;
+	        		else break;
+	        	}
+	        	System.out.println("");
 	        	
 	        	if(identifierFlag == 1 && typeFlag == 0 && keywordFlag == 0 && functionFlag == 0){
 	        		
 	        		newSentence[s++] = "id";
+	        		identifierFlag = 0;
 	        		//System.out.println(newSentence[s++]);
 	        	}
+	        	
+	        	if(numberFlag == 1 && dotFlag == 2){
+	        		newSentence[s++] = "num";
+	        		newSentence[s++] = "num";
+	        		numberFlag = 0;
+	        		dotFlag = 0;
+	        		//System.out.println(newSentence[s++]);
+	        	}else if(numberFlag == 1 && (dotFlag == 0 || dotFlag == 1)){
+	        		newSentence[s++] = "num";
+	        		numberFlag = 0;
+	        		dotFlag = 0;
+	        	}
+	        	
 	        	if(sent[i] == '+' || sent[i] == '-' || sent[i] == '*' || sent[i] == '/'|| sent[i] == '(' || sent[i] == ')'){
 	        		newSentence[s++] = Character.toString(sent[i]);
 	        		//System.out.println(newSentence[s++]);
@@ -144,7 +182,7 @@ public class ParserG {
 		stk = 0;
 		//System.out.println(stk);
 		int push = 0, pop = 0, counter = 0;
-		String[] stack = new String[100];
+		String[] stack = new String[50];
 		push = push(stk); // push = 0, stk = 1
 		//System.out.println(stk);
 		stack[push] = "$";
@@ -152,56 +190,71 @@ public class ParserG {
 		//System.out.println(stk);
 		stack[push] = "E";
 		s = 0;
+		String temp = null;
+		String tempS;
 		
-		int parseFlag = 0;
-		while(true){
+
+		for(pop = pop(stk);pop>=0;pop = pop(stk)){
 			counter++;
-			parseFlag = 0;
-			pop = pop(stk); //pop = 1, stk = 1
-			String tempS = stack[pop];
+			tempS = stack[pop];
 			System.out.println("pop: "+ stk+" Value: "+tempS);
-			
-			if(counter >= 100 & parseFlag == 0){
-				System.out.println("The given sentence can not be derivable!");break;
-			}else if(tempS.equals("$")){
-				parseFlag = 1;
-				System.out.println("The given sentence can be derivable! and count = "+counter);break;
-			}
-			
-			String temp = newSentence[s];
+			temp = newSentence[s];
 			System.out.println("sentence: " + temp);
-			if(tempS.equals(temp)){
-				s++;
-				System.out.println("sentence increment op");continue;
-			}
 			
-			int row = 0, col = 0;
-			for(row = 1; row < 6 ; row++){
-				if(parseTable[row][0].equals(tempS)){
-					System.out.println("Parse Table Row Value: "+parseTable[row][0]);
-					for(col = 1; col<7; col++){
-						if(parseTable[0][col].equals(temp)){
-							str = parseTable[row][col];
-							System.out.println("Parse Table Value: "+str);
-						}
-					}
+			if(temp.equals("$")&&tempS.equals("$")) break;
+			
+			if(!temp.equals("$")){
+				if(tempS.equals(temp)){
+					s++;
+					parseFlag = 1;
+					System.out.println("Change 1: parseFlag = "+parseFlag);
+					System.out.println("sentence increment op");continue;
+					
+				}else{
+					parseFlag = 0;
+					System.out.println("Change 2: parseFlag = "+parseFlag);
+					System.out.println("Op Cancel");
 				}
 			}
 			
+			System.out.println("parseFlag = "+parseFlag);
+			
+
+			int row = 0, col = 0;
+			for(row = 1; row<10 ; row++){
+				if(parseTable[row][0].equals(tempS)){
+					System.out.println("Parse Table Row Value: "+parseTable[row][0]);
+					for(col = 1; col<10; col++){
+						if(parseTable[0][col].equals(temp)){
+							str = parseTable[row][col];
+							System.out.println("Parse Table Value: "+str);
+							break;
+						}
+					}
+					parseFlag = 1;
+					//System.out.println("Change 3: parseFlag = "+parseFlag);
+					break;
+				}else{
+					parseFlag = 2;
+					System.out.println("Change 3: parseFlag = "+parseFlag);
+				}
+			}
+			if(parseFlag==2){
+				parseFlag = 0; break;
+			}
 			if(str == null){
 				parseFlag = 0;
-				counter = 101;
-				System.out.println("Null continue");
-				continue;
+				System.out.println("Null!!! Break op.");
+				break;
 			}
 			
-			if(str.equals("!")){
-				//pop = pop(stk);
-				//System.out.println("For empty op. pop value: "+stk );
-				continue;
-			}
+			if(str.equals("!"))continue;
 			
 			if(str.equals("id")){
+				push = push(stk); // push = 1, stk =2
+				stack[push] = str;
+				System.out.println("push: "+stk+" Value: "+stack[push]);
+			}else if(str.equals("num")){
 				push = push(stk); // push = 1, stk =2
 				stack[push] = str;
 				System.out.println("push: "+stk+" Value: "+stack[push]);
@@ -215,6 +268,12 @@ public class ParserG {
 			}   
 				
 		}
+		if(parseFlag == 1){
+			System.out.println("The given sentence can be derivable! and count = "+counter);
+		}else if(parseFlag == 0){
+			System.out.println("The given sentence can not be derivable! and count = "+counter);
+		}
+		System.out.println("Stack pointer: "+stk);
 	}
 	
 	public int push(int i){
@@ -224,7 +283,6 @@ public class ParserG {
 	}
 	
 	public int pop(int i){
-		
 		stk = --i;
 		return stk;
 	}

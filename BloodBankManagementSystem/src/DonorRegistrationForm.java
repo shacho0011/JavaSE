@@ -14,17 +14,15 @@ import javax.swing.JTextField;
 
 public class DonorRegistrationForm extends JPanel{
 	
-	private static JPanel jPanel;
 	private JLabel monileNL, nameL, bloodGL, sexL, addressL, emailL, alternativeMNL;
 	private JTextField mobileNTF, nameTF, bloodGTF, sexTF, addressTF, emailTF, alternativeMNTF;
 	private JButton submitB;
 	private static String titleText = "BBMS";
 	
-	public JPanel DonorRegistrationForm(){
+	public DonorRegistrationForm(){
 		
-		jPanel = new JPanel();
-		jPanel.setBackground(Color.WHITE);
-		jPanel.setLayout(null);
+		setBackground(Color.WHITE);
+		setLayout(null);
 		
 		monileNL = new JLabel("Donor Mobile Number:");
 		monileNL.setFont(new Font("Cambri", Font.PLAIN, 16));
@@ -76,25 +74,24 @@ public class DonorRegistrationForm extends JPanel{
 		
 		submitB.addActionListener(new donorSubmitB());
 		
-		jPanel.add(monileNL);
-		jPanel.add(nameL);
-		jPanel.add(bloodGL);
-		jPanel.add(sexL);
-		jPanel.add(addressL);
-		jPanel.add(emailL);
-		jPanel.add(alternativeMNL);
+		this.add(monileNL);
+		this.add(nameL);
+		this.add(bloodGL);
+		this.add(sexL);
+		this.add(addressL);
+		this.add(emailL);
+		this.add(alternativeMNL);
 		
-		jPanel.add(mobileNTF);
-		jPanel.add(nameTF);
-		jPanel.add(bloodGTF);
-		jPanel.add(sexTF);
-		jPanel.add(addressTF);
-		jPanel.add(emailTF);
-		jPanel.add(alternativeMNTF);
+		this.add(mobileNTF);
+		this.add(nameTF);
+		this.add(bloodGTF);
+		this.add(sexTF);
+		this.add(addressTF);
+		this.add(emailTF);
+		this.add(alternativeMNTF);
 		
-		jPanel.add(submitB);
+		this.add(submitB);
 		
-		return jPanel;
 	}
 
 }

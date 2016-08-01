@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 public class MainFrame extends JFrame{
-	private JFrame jFrame;
+	
 	private JMenuBar menuBar;
 	private JMenu file, reg, inventory, req;
 	private JMenuItem about, close, donor, stock, sells, request, approval;
@@ -18,17 +18,14 @@ public class MainFrame extends JFrame{
 	
 	
 	public MainFrame(){
-		jFrame = new JFrame(titleText);
-		jFrame.setVisible(true);
-		jFrame.setSize(800,600);
-		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
-	}
+		//jFrame = new JFrame(titleText);
+		//jFrame.setVisible(true);
+		setSize(800,600);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
 	
-	
-	public void initComponent(){
 		menuBar = new JMenuBar();
-		menuBar.setVisible(true);
-		jFrame.setJMenuBar(menuBar);
+
+		setJMenuBar(menuBar);
 		
 		file = new JMenu("File");
 		menuBar.add(file);
@@ -69,7 +66,7 @@ public class MainFrame extends JFrame{
 		class donorA implements ActionListener{
 			public void actionPerformed(ActionEvent e){
 				DonorRegistrationForm drf = new DonorRegistrationForm();
-				jFrame.add(drf.DonorRegistrationForm());
+				add(drf);
 			}
 		}
 		
@@ -78,7 +75,7 @@ public class MainFrame extends JFrame{
 		class requestA implements ActionListener{
 			public void actionPerformed(ActionEvent e){
 				Request req = new Request();
-				jFrame.add(req.Request());
+				add(req.Request());
 			}
 		}
 		
